@@ -1,0 +1,124 @@
+/* ════════════════════════════════════════════════════════════════════════
+   Cryptocoinex — Design System Tokens (single source of truth)
+   Loaded by both the trading screen and the admin panel. Use these
+   var(--token) names in any new component for a consistent dark theme.
+   ════════════════════════════════════════════════════════════════════════ */
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('../vendor/fonts/inter.woff2') format('woff2');
+}
+
+:root {
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  /* Background layers */
+  --bg-base:     #07090e;   /* page background */
+  --bg-surface:  #0d1117;   /* cards, panels */
+  --bg-elevated: #111821;   /* dropdowns, tooltips */
+  --bg-hover:    #161e2c;   /* hover states */
+
+  /* Borders */
+  --border:       #1c2a3a;
+  --border-focus: #2a3f5a;
+
+  /* Text */
+  --text-primary: #e2e8f0;
+  --text-muted:   #64748b;
+  --text-dim:     #334155;
+
+  /* Semantic colours */
+  --green: #00c97b;  --green-muted: rgba(0,201,123,.15);
+  --red:   #f53b57;  --red-muted:   rgba(245,59,87,.15);
+  --gold:  #f59e0b;  --gold-muted:  rgba(245,158,11,.15);
+  --blue:  #3b82f6;  --blue-muted:  rgba(59,130,246,.15);
+
+  /* Up / down (price action) */
+  --tick-up: #22c55e;
+  --tick-dn: #ef4444;
+
+  /* Typography scale */
+  --text-xs:   .625rem;   /* 10px — labels, badges */
+  --text-sm:   .75rem;    /* 12px — meta text */
+  --text-base: .875rem;   /* 14px — body */
+  --text-lg:   1rem;      /* 16px — headings */
+  --text-xl:   1.25rem;   /* 20px — section titles */
+  --text-2xl:  1.5rem;    /* 24px — balance display */
+  --text-3xl:  2rem;      /* 32px — big numbers */
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius:    8px;
+  --radius-lg: 12px;
+}
+
+/* ── Light theme overrides ───────────────────────────────────────────────── */
+:root[data-theme="light"] {
+  --bg-base:     #f1f5f9;
+  --bg-surface:  #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-hover:    #eef2f7;
+
+  --border:       #d8e0ea;
+  --border-focus: #b9c6d6;
+
+  --text-primary: #1e293b;
+  --text-muted:   #64748b;
+  --text-dim:     #94a3b8;
+
+  --green-muted: rgba(0,160,98,.12);
+  --red-muted:   rgba(220,38,60,.10);
+  --gold-muted:  rgba(217,119,6,.12);
+  --blue-muted:  rgba(37,99,235,.10);
+}
+
+/* ── Pagination (shared by admin + trade, themed) ───────────────────────────
+   Markup: resources/views/vendor/pagination/simple-default.blade.php          */
+.pagination {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pagination .pg-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  padding: 0 11px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-surface);
+  color: var(--text-muted);
+  font-size: var(--text-base);
+  font-weight: 600;
+  line-height: 1;
+  text-decoration: none;
+  transition: border-color .15s ease, color .15s ease, background .15s ease;
+}
+.pagination a.pg-link:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: var(--bg-hover);
+}
+.pagination .pg-link.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: #1a1206;
+  cursor: default;
+}
+.pagination .pg-link.disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+.pagination .pg-gap {
+  padding: 0 4px;
+  color: var(--text-dim);
+  font-weight: 600;
+  user-select: none;
+}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  launchd agent to keep the Cryptocoinex queue worker running (settles trades).
+
+  Install:
+    cp scripts/com.cryptocoinex.queue.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.cryptocoinex.queue.plist
+
+  Stop:
+    launchctl unload ~/Library/LaunchAgents/com.cryptocoinex.queue.plist
+
+  The worker auto-restarts (KeepAlive) after crashes or a MAMP restart.
+-->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.cryptocoinex.queue</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/opt/homebrew/bin/php</string>
+    <string>/Applications/MAMP/htdocs/cryptocoinex/artisan</string>
+    <string>horizon</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/Applications/MAMP/htdocs/cryptocoinex</string>
+
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>KeepAlive</key>
+  <true/>
+
+  <key>StandardOutPath</key>
+  <string>/Applications/MAMP/htdocs/cryptocoinex/storage/logs/queue-worker.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Applications/MAMP/htdocs/cryptocoinex/storage/logs/queue-worker.log</string>
+</dict>
+</plist>
