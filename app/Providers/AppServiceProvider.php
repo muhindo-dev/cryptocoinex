@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Pagination\Paginator;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
@@ -22,6 +23,10 @@ class AppServiceProvider extends ServiceProvider
 
     public function boot(): void
     {
+        // Cap indexed string columns at 191 chars so utf8mb4 indexes stay within
+        // the 1000-byte key limit on older MySQL/MariaDB builds.
+        Schema::defaultStringLength(191);
+
         // Practice simulator — keep passwords simple. Minimum 4 characters,
         // no other restrictions. Applies everywhere Password::defaults() is used
         // (register, reset, password change, API).
