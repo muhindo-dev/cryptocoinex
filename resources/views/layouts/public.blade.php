@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>@yield('title', 'Practice Trading, Risk Nothing') — Cryptocoinex</title>
-  <meta name="description" content="@yield('desc', 'Learn to trade with 100% virtual money. Real-time charts, tournaments, leaderboards and a full trading course — completely risk-free.')">
+  <title>@yield('title', 'Trade Crypto, Forex & Gold on Live Markets') · Cryptocoinex</title>
+  <meta name="description" content="@yield('desc', 'Trade crypto, forex and gold on live markets, with fast deposits and withdrawals and a free demo to practice first.')">
   <link rel="icon" type="image/png" href="{{ asset('images/logo-square.png') }}">
   <link rel="manifest" href="{{ asset('manifest.json') }}">
   <meta name="theme-color" content="#06080d">
@@ -129,7 +129,7 @@
     </nav>
     <div class="nav-cta">
       <a href="{{ url('/admin/login') }}" class="btn btn-ghost btn-sm">Sign in</a>
-      <a href="{{ route('onboarding.register') }}" class="btn btn-gold btn-sm">Start free <i class="fas fa-arrow-right" style="font-size:.7rem;"></i></a>
+      <a href="{{ route('onboarding.register') }}" class="btn btn-gold btn-sm">Open account <i class="fas fa-arrow-right" style="font-size:.7rem;"></i></a>
     </div>
   </div>
 </header>
@@ -146,7 +146,7 @@
             <polyline points="17,5 21,5 21,9" stroke="#231603" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
           </svg></span> Cryptocoinex
         </a>
-        <p class="foot-blurb">A free, risk-free trading simulator. Practice on real-time charts with virtual money, learn with our academy, and compete — without ever risking a cent.</p>
+        <p class="foot-blurb">Trade crypto, forex and gold on live markets, with fast deposits and withdrawals, plus a free demo to practice first.</p>
       </div>
       <div class="foot-col">
         <h4>Product</h4>
@@ -171,8 +171,8 @@
   </div>
   <div class="wrap">
     <div class="foot-bar">
-      <span>© {{ date('Y') }} Cryptocoinex · A risk-free trading simulator.</span>
-      <span class="foot-disc">⚠ Practice simulator — not a real broker. All balances are virtual “USD” with zero real-world value. Not financial advice.</span>
+      <span>© {{ date('Y') }} Cryptocoinex · Live market trading.</span>
+      <span class="foot-disc">⚠ Trading involves risk and you can lose your funds. Only trade what you can afford to lose. Not financial advice.</span>
     </div>
   </div>
 </footer>

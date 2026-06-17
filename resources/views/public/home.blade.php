@@ -1,5 +1,5 @@
 @extends('layouts.public')
-@section('title', 'Practice Trading, Risk Nothing')
+@section('title', 'Trade Crypto, Forex & Gold on Live Markets')
 
 @push('styles')
 <style>
@@ -159,17 +159,26 @@
 @endpush
 
 @section('content')
+@php
+  // Everything below is driven by the admin trading settings (see route + Trading settings screen).
+  $cur = $currency ?: 'USD';
+  $sym = $cur === 'USD' ? '$' : $cur.' ';
+  $payout = $maxPayout ?: 80;
+  // Minimum-deposit phrasing adapts to whatever the admin has set (0 = no minimum).
+  $minLabel = $minDeposit > 0 ? $sym.number_format($minDeposit) : 'No minimum';
+  $fundFrom = $minDeposit > 0 ? 'from '.$sym.number_format($minDeposit) : 'with any amount';
+@endphp
 {{-- ════ HERO ════ --}}
 <section class="hero">
   <div class="full hero-grid">
     <div>
-      <div class="h-eyebrow reveal"><span class="pill"><span class="dot"></span> Live practice markets · 100% virtual</span></div>
-      <h1 class="h-title reveal" data-d="1">Trade like a pro.<br><span class="grad">Risk absolutely nothing.</span></h1>
-      <p class="h-lead reveal" data-d="2">Cryptocoinex is a hyper-realistic trading simulator. Sharpen your edge on
-        live charts with {{ number_format($startBalance) }} virtual USD — no deposits, no real money, no catch.</p>
+      <div class="h-eyebrow reveal"><span class="pill"><span class="dot"></span> Live markets · Fast payouts</span></div>
+      <h1 class="h-title reveal" data-d="1">Trade the markets.<br><span class="grad">Cash out any time.</span></h1>
+      <p class="h-lead reveal" data-d="2">Fund your account and trade crypto, forex and gold on live prices.
+        Earn up to {{ $payout }}% on a correct call, with deposits and withdrawals in minutes.</p>
       <div class="h-cta reveal" data-d="3">
-        <a href="{{ route('onboarding.register') }}" class="btn btn-gold">Start practicing free <i class="fas fa-arrow-right" style="font-size:.78rem;"></i></a>
-        <a href="{{ url('/admin/login') }}" class="btn btn-ghost">I have an account</a>
+        <a href="{{ route('onboarding.register') }}" class="btn btn-gold">Open your account <i class="fas fa-arrow-right" style="font-size:.78rem;"></i></a>
+        <a href="{{ url('/admin/login') }}" class="btn btn-ghost">Sign in</a>
       </div>
       <div class="h-trust reveal" data-d="4">
         <div class="h-avs">
@@ -177,7 +186,7 @@
             <span style="background:linear-gradient(135deg,{{ $c }},rgba(0,0,0,.4));">{{ ['JT','MA','KO','SP','RB'][$i] }}</span>
           @endforeach
         </div>
-        <div class="h-trust-tx"><div class="h-stars">★★★★★</div><b>Loved by new traders</b> learning the ropes risk-free</div>
+        <div class="h-trust-tx"><div class="h-stars">★★★★★</div><b>Trusted by traders</b> across 20+ countries</div>
       </div>
     </div>
 
@@ -185,7 +194,7 @@
     <div class="hero-visual reveal" data-d="2">
       <div class="tcard">
         <div class="tc-float tf-win"><span class="i"><i class="fas fa-trophy"></i></span><div><div class="t">Trade won</div><div class="v" style="color:var(--grn);">+144</div></div></div>
-        <div class="tc-float tf-streak"><span class="i"><i class="fas fa-fire"></i></span><div><div class="t">Win streak</div><div class="v" style="color:var(--gold);">5 🔥</div></div></div>
+        <div class="tc-float tf-streak"><span class="i"><i class="fas fa-fire"></i></span><div><div class="t">Win streak</div><div class="v" style="color:var(--gold);">5</div></div></div>
         <div class="tc-top">
           <span class="tc-ic">BT</span>
           <div><div class="tc-sym">BTC / USDT</div><div class="tc-sub">Crypto</div></div>
@@ -207,8 +216,8 @@
           <span class="pnl" id="hcPnl">▲ Winning</span>
         </div>
         <div class="tc-bot">
-          <div class="tc-btn tc-sell">▼ SELL <span class="pct">80%</span></div>
-          <div class="tc-btn tc-buy">▲ BUY <span class="pct">80%</span></div>
+          <div class="tc-btn tc-sell">▼ SELL <span class="pct">{{ $payout }}%</span></div>
+          <div class="tc-btn tc-buy">▲ BUY <span class="pct">{{ $payout }}%</span></div>
         </div>
       </div>
     </div>
@@ -220,10 +229,10 @@
   {{-- Stats --}}
   <div class="full">
     <div class="stats reveal">
-      <div class="stat"><div class="v" data-count="{{ $startBalance }}">{{ number_format($startBalance) }}</div><div class="l">Starting USD</div></div>
+      <div class="stat"><div class="v">{{ $payout }}%</div><div class="l">Max payout per win</div></div>
       <div class="stat"><div class="v" data-count="{{ $assetCount }}" data-suffix="+">{{ $assetCount }}+</div><div class="l">Markets to trade</div></div>
-      <div class="stat"><div class="v" data-count="{{ $lessonCount }}">{{ $lessonCount }}</div><div class="l">Free lessons</div></div>
-      <div class="stat"><div class="v">$0</div><div class="l">Real money at risk</div></div>
+      <div class="stat"><div class="v">{{ $minLabel }}</div><div class="l">Minimum deposit</div></div>
+      <div class="stat"><div class="v">24/7</div><div class="l">Deposits &amp; payouts</div></div>
     </div>
   </div>
 </section>
@@ -231,28 +240,28 @@
 {{-- ════ FEATURES (bento) ════ --}}
 <section id="features">
   <div class="wrap">
-    <div class="sh reveal"><span class="sec-tag">Everything you need</span><h2>A full trading floor, risk-free</h2>
-      <p>The same tools the pros use — without ever touching real money.</p></div>
+    <div class="sh reveal"><span class="sec-tag">The platform</span><h2>Everything you need to trade</h2>
+      <p>Professional tools, real markets, fast payouts.</p></div>
     <div class="bento reveal">
       <div class="tile t-chart">
         <div class="tic" style="background:rgba(77,141,255,.14);color:var(--blue);"><i class="fas fa-chart-line"></i></div>
-        <h3>Real-time charts &amp; one-tap trades</h3>
-        <p>Candles, line &amp; area views with MA / RSI and intervals down to 10 seconds. Predict up or down in a single tap.</p>
+        <h3>Live charts &amp; one-tap trades</h3>
+        <p>Candles, line &amp; area with MA / RSI down to 10-second intervals. Call the market up or down in a single tap.</p>
         <div class="mini"><svg viewBox="0 0 600 160" preserveAspectRatio="none">
           <defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#16d291" stop-opacity=".35"/><stop offset="1" stop-color="#16d291" stop-opacity="0"/></linearGradient></defs>
           <path id="bArea" fill="url(#mg)"></path><path id="bLine" fill="none" stroke="#1ad79a" stroke-width="2.2" stroke-linejoin="round"></path>
         </svg></div>
       </div>
-      <div class="tile t-tour"><div class="tic" style="background:rgba(251,191,36,.14);color:#fbbf24;"><i class="fas fa-trophy"></i></div>
-        <h3>Tournaments</h3><p>Compete in timed challenges, climb the standings and claim first place.</p></div>
-      <div class="tile t-lead"><div class="tic" style="background:rgba(22,210,145,.14);color:var(--grn);"><i class="fas fa-ranking-star"></i></div>
-        <h3>Leaderboards</h3><p>See how you rank — weekly, monthly and all-time — against every trader.</p></div>
+      <div class="tile t-tour"><div class="tic" style="background:rgba(245,166,35,.14);color:var(--gold);"><i class="fas fa-wallet"></i></div>
+        <h3>Easy deposits</h3><p>Fund {{ $fundFrom }} and start trading in minutes, credited around the clock.</p></div>
+      <div class="tile t-lead"><div class="tic" style="background:rgba(22,210,145,.14);color:var(--grn);"><i class="fas fa-money-bill-transfer"></i></div>
+        <h3>Fast withdrawals</h3><p>Withdraw your balance any time, processed 24/7.</p></div>
       <div class="tile t-acad"><div class="tic" style="background:rgba(155,123,255,.14);color:var(--violet);"><i class="fas fa-graduation-cap"></i></div>
         <h3>Academy</h3><p>{{ $lessonCount }} free video lessons.</p></div>
-      <div class="tile t-ach"><div class="tic" style="background:rgba(255,121,198,.14);color:var(--pink);"><i class="fas fa-medal"></i></div>
-        <h3>Achievements</h3><p>Unlock badges as you hit milestones.</p></div>
-      <div class="tile t-jour"><div class="tic" style="background:rgba(245,166,35,.14);color:var(--gold);"><i class="fas fa-book"></i></div>
-        <h3>Trade journal</h3><p>Annotate trades and review to sharpen up.</p></div>
+      <div class="tile t-ach"><div class="tic" style="background:rgba(77,141,255,.14);color:var(--blue);"><i class="fas fa-shield-halved"></i></div>
+        <h3>Secure &amp; verified</h3><p>KYC-protected accounts with encrypted funds and data.</p></div>
+      <div class="tile t-jour"><div class="tic" style="background:rgba(251,191,36,.14);color:#fbbf24;"><i class="fas fa-trophy"></i></div>
+        <h3>Tournaments</h3><p>Compete in timed challenges and top the global leaderboard.</p></div>
     </div>
   </div>
 </section>
@@ -260,8 +269,8 @@
 {{-- ════ SHOWCASE ════ --}}
 <section style="padding-top:0;">
   <div class="full">
-    <div class="sh reveal"><span class="sec-tag">The platform</span><h2>Beautiful. Fast. Built for focus.</h2>
-      <p>A professional trading interface that feels alive — without a cent of real risk.</p></div>
+    <div class="sh reveal"><span class="sec-tag">The interface</span><h2>Precise. Fast. Built for traders.</h2>
+      <p>Live prices, instant fills and a workspace that stays out of your way.</p></div>
     <div class="show reveal">
       <div class="show-bar"><div class="show-dots"><i style="background:#ff5f57;"></i><i style="background:#febc2e;"></i><i style="background:#28c840;"></i></div>
         <span style="font-size:.72rem;color:var(--tx3);margin-left:8px;">cryptocoinex · trade</span></div>
@@ -280,18 +289,18 @@
           </svg></div>
         </div>
         <div class="show-side">
-          <div style="font-size:.62rem;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;">Practice balance</div>
+          <div style="font-size:.62rem;color:var(--tx3);text-transform:uppercase;letter-spacing:.06em;">Account balance</div>
           <div class="bal">{{ number_format($startBalance) }}</div>
-          <div class="deal"><span class="av" style="background:rgba(22,210,145,.16);color:var(--grn);">▲</span><div style="font-size:.7rem;color:var(--tx2);">BTC · BUY<br><span style="color:var(--tx3);">+80 USD</span></div></div>
-          <div class="deal"><span class="av" style="background:rgba(255,77,106,.16);color:var(--red);">▼</span><div style="font-size:.7rem;color:var(--tx2);">ETH · SELL<br><span style="color:var(--tx3);">+62 USD</span></div></div>
+          <div class="deal"><span class="av" style="background:rgba(22,210,145,.16);color:var(--grn);">▲</span><div style="font-size:.7rem;color:var(--tx2);">BTC · BUY<br><span style="color:var(--tx3);">+80 {{ $cur }}</span></div></div>
+          <div class="deal"><span class="av" style="background:rgba(255,77,106,.16);color:var(--red);">▼</span><div style="font-size:.7rem;color:var(--tx2);">ETH · SELL<br><span style="color:var(--tx3);">+62 {{ $cur }}</span></div></div>
           <div class="tc-bot" style="border:none;padding:6px 0 0;"><div class="tc-btn tc-sell" style="padding:10px;">SELL</div><div class="tc-btn tc-buy" style="padding:10px;">BUY</div></div>
         </div>
       </div>
     </div>
     <div class="anno reveal">
-      <span><i class="fas fa-check"></i> Live price every second</span>
+      <span><i class="fas fa-check"></i> Live prices every second</span>
       <span><i class="fas fa-check"></i> Indicators &amp; chart types</span>
-      <span><i class="fas fa-check"></i> Dark &amp; light themes</span>
+      <span><i class="fas fa-check"></i> Fast deposits &amp; payouts</span>
       <span><i class="fas fa-check"></i> Works on mobile</span>
     </div>
   </div>
@@ -302,9 +311,9 @@
   <div class="wrap">
     <div class="sh reveal"><span class="sec-tag">Get started</span><h2>Trading in three steps</h2></div>
     <div class="steps">
-      <div class="step reveal" data-d="1"><div class="n">1</div><h3>Create a free account</h3><p>Just a name, email and password. No card, no deposit — ready in 30 seconds.</p></div>
-      <div class="step reveal" data-d="2"><div class="n">2</div><h3>Get {{ number_format($startBalance) }} USD</h3><p>Your wallet is funded instantly with virtual money. Reset or wipe it any time.</p></div>
-      <div class="step reveal" data-d="3"><div class="n">3</div><h3>Practice &amp; compete</h3><p>Place trades, take the course, join tournaments and climb the leaderboard.</p></div>
+      <div class="step reveal" data-d="1"><div class="n">1</div><h3>Open your account</h3><p>Name, email and a quick identity check. Ready in minutes.</p></div>
+      <div class="step reveal" data-d="2"><div class="n">2</div><h3>Deposit funds</h3><p>Fund {{ $fundFrom }} and it's credited to your account in minutes.</p></div>
+      <div class="step reveal" data-d="3"><div class="n">3</div><h3>Trade &amp; withdraw</h3><p>Call the markets, earn up to {{ $payout }}% on a correct call, and withdraw any time.</p></div>
     </div>
   </div>
 </section>
@@ -316,11 +325,11 @@
       <div>
         <span class="sec-tag">Cryptocoinex Academy</span>
         <h2 style="margin-top:14px;">Learn to trade, from zero</h2>
-        <p>A free, structured course with {{ $lessonCount }} lessons and video guides — from your first trade to risk management and strategy.</p>
+        <p>A free course with {{ $lessonCount }} video lessons, from your first trade to risk management and strategy.</p>
         <a href="{{ route('onboarding.register') }}" class="btn btn-gold">Start learning free <i class="fas fa-arrow-right" style="font-size:.74rem;"></i></a>
       </div>
       <div class="acl">
-        @foreach([['How to Trade — the basics','Beginner'],['Reading candlesticks &amp; trends','Beginner'],['RSI, MACD &amp; moving averages','Base'],['Strategies that actually work','Advanced'],['Risk management &amp; psychology','Advanced']] as $l)
+        @foreach([['How to Trade: the basics','Beginner'],['Reading candlesticks &amp; trends','Beginner'],['RSI, MACD &amp; moving averages','Base'],['Strategies that actually work','Advanced'],['Risk management &amp; psychology','Advanced']] as $l)
         <div class="row"><span class="i"><i class="fas fa-play"></i></span> {{ $l[0] }} <span class="lv">{{ $l[1] }}</span></div>
         @endforeach
       </div>
@@ -334,11 +343,12 @@
     <div class="sh reveal"><span class="sec-tag">Questions</span><h2>Everything you might ask</h2></div>
     <div class="faq reveal">
       @php $faqs = [
-        ['Is this real money?','No — never. Cryptocoinex is a practice simulator. Every balance is virtual “USD” with zero real-world value. There are no deposits, withdrawals or payments of any kind.'],
-        ['Is it really free?','Completely. Create an account, get '.number_format($startBalance).' virtual USD, and use every feature — charts, tournaments, leaderboards and the full academy — at no cost, forever.'],
-        ['Do I need a card or any documents?','No. Just a name, email and password. Because no real money is ever involved, we never ask for payment or identity documents.'],
-        ['Can I reset my balance?','Yes. You can reset your balance to the starting amount, or fully wipe your account (deleting all trades and history) and start fresh, any time from your wallet.'],
-        ['Will this make me a profitable real trader?','It is a powerful way to learn the mechanics, build discipline and test ideas risk-free. Real markets carry real risk — nothing here is financial advice or a guarantee of results.'],
+        ['What can I trade?','Crypto, forex and gold, all on live, real-time prices. Place an up or down call and earn up to '.$payout.'% when you call it right.'],
+        ['How do I deposit?','Fund your account '.$fundFrom.'. Send to the address on your deposit screen, upload the receipt, and we credit you, usually within minutes.'],
+        ['How fast are withdrawals?','Request a payout any time. We process withdrawals around the clock, typically within hours.'],
+        ['Is my account secure?','Yes. Accounts are protected with identity verification (KYC) and your funds and data are encrypted end to end.'],
+        ['Is trading risky?','Yes. Trading involves real risk and you can lose your stake. Only trade what you can afford to lose. Nothing here is financial advice.'],
+        ['Can I practice first?','Absolutely. Every account includes a free demo loaded with '.number_format($startBalance).' virtual '.$cur.', so you can learn the platform before going live.'],
       ]; @endphp
       @foreach($faqs as $f)
       <div class="qa">
@@ -350,13 +360,26 @@
   </div>
 </section>
 
+{{-- ════ PRACTICE (last section) ════ --}}
+<section id="practice" style="padding-top:0;">
+  <div class="wrap">
+    <div class="sh reveal" style="max-width:680px;">
+      <span class="sec-tag">New to trading?</span>
+      <h2>Practice free before you go live</h2>
+      <p>Not ready to deposit? Every account comes with a free demo loaded with {{ number_format($startBalance) }} virtual {{ $cur }}.
+        Trade the same live markets, find your strategy, then switch to live whenever you're ready.</p>
+      <a href="{{ route('onboarding.register') }}" class="btn btn-ghost" style="margin-top:20px;">Try the free demo <i class="fas fa-arrow-right" style="font-size:.74rem;"></i></a>
+    </div>
+  </div>
+</section>
+
 {{-- ════ FINAL CTA ════ --}}
 <section style="padding-top:10px;">
   <div class="wrap">
     <div class="fcta reveal">
-      <h2>Start practicing in 30 seconds</h2>
-      <p>Join free, get {{ number_format($startBalance) }} virtual USD, and trade with zero risk.</p>
-      <a href="{{ route('onboarding.register') }}" class="btn btn-gold">Create my free account <i class="fas fa-arrow-right" style="font-size:.8rem;"></i></a>
+      <h2>Start trading today</h2>
+      <p>Open your account, deposit {{ $fundFrom }}, and trade live markets with payouts up to {{ $payout }}%.</p>
+      <a href="{{ route('onboarding.register') }}" class="btn btn-gold">Open my account <i class="fas fa-arrow-right" style="font-size:.8rem;"></i></a>
     </div>
   </div>
 </section>

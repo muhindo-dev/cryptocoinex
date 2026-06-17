@@ -64,7 +64,7 @@ class WalletController extends Controller
 
         $user = Auth::user();
         $wallet = $this->walletService->walletFor($user->id);
-        $startBalance = (int) TradingSetting::get('default_start_balance', 10000);
+        $startBalance = (int) TradingSetting::get('default_start_balance', 1000);
 
         if ($wallet->balance > 0) {
             $this->walletService->debit($wallet, $wallet->balance, 'reset', [

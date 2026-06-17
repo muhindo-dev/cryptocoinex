@@ -78,7 +78,7 @@ class CryptocoineuxSeeder extends Seeder
             return;
         }
 
-        $startBalance = (int) TradingSetting::get('default_start_balance', 10000);
+        $startBalance = (int) TradingSetting::get('default_start_balance', 1000);
 
         // Clean previous demo students (cascade removes their wallets/trades/entries).
         User::where('email', 'like', '%@'.self::EMAIL_DOMAIN)->get()

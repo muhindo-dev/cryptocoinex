@@ -94,7 +94,7 @@ class WalletService
                 return $wallet;
             }
 
-            $amount = (int) TradingSetting::get('default_start_balance', 10000);
+            $amount = (int) TradingSetting::get('default_start_balance', 1000);
 
             return $this->credit($wallet, $amount, 'topup', ['reason' => 'starting_balance']);
         });

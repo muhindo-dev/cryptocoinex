@@ -58,7 +58,7 @@ class StudentController extends Controller
     public function reset(User $student)
     {
         $wallet = $this->walletService->walletFor($student->id);
-        $startBalance = (int) TradingSetting::get('default_start_balance', 10000);
+        $startBalance = (int) TradingSetting::get('default_start_balance', 1000);
 
         if ($wallet->balance > 0) {
             $this->walletService->debit(

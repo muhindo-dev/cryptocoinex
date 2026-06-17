@@ -22,6 +22,9 @@ Route::get('/', function () {
         'assetCount' => \App\Models\Trading\Asset::where('enabled', true)->count() ?: 13,
         'lessonCount' => \App\Models\Education\EducationArticle::count() ?: 42,
         'startBalance' => (int) \App\Models\Trading\TradingSetting::get('default_start_balance', 10000),
+        'currency' => \App\Models\Trading\TradingSetting::get('live_account_currency', 'USD'),
+        'minDeposit' => (float) \App\Models\Trading\TradingSetting::get('live_account_min_deposit', 0),
+        'maxPayout' => (int) (\App\Models\Trading\Asset::where('enabled', true)->max('payout_percent') ?: 80),
     ]);
 })->name('home');
 

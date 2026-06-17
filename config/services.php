@@ -40,7 +40,7 @@ return [
     // to false to hide it everywhere; it is always skipped during tests.
     'tawk' => [
         'enabled' => env('TAWK_ENABLED', true),
-        'id' => env('TAWK_ID', '5bbe13b508387933e5bac70a/default'),
+        'id' => env('TAWK_ID', '6a329796d0dd3e1d406c5bbe/1jraq09sc'),
     ],
 
 ];

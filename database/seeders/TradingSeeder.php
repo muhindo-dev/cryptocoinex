@@ -12,7 +12,7 @@ class TradingSeeder extends Seeder
     {
         // ── Global settings ──
         $settings = [
-            'default_start_balance' => '10000',
+            'default_start_balance' => '1000',
             'default_mode' => 'sim',
             'live_mode_enabled' => 'true',
             'tie_policy' => 'refund',
