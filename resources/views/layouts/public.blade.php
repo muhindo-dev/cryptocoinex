@@ -60,8 +60,17 @@
     .nav-links a{position:relative;transition:color .15s;}
     .nav-links a::after{content:'';position:absolute;left:0;bottom:-6px;width:0;height:2px;background:var(--gold);transition:width .2s;border-radius:2px;}
     .nav-links a:hover{color:var(--tx);} .nav-links a:hover::after{width:100%;}
+    .nav-links a.active{color:var(--tx);} .nav-links a.active::after{width:100%;}
     .nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center;}
-    @media(max-width:820px){.nav-links{display:none;} .nav-in{height:62px;}}
+    .nav-burger{display:none;margin-left:auto;width:42px;height:42px;border-radius:11px;border:1px solid var(--brd);
+      background:var(--glass);color:var(--tx);font-size:1.05rem;align-items:center;justify-content:center;cursor:pointer;}
+    .mobile-menu{display:none;border-bottom:1px solid var(--brd);background:rgba(6,8,13,.96);backdrop-filter:blur(16px);}
+    .mobile-menu.open{display:block;}
+    .mobile-menu .wrap{padding-top:8px;padding-bottom:18px;}
+    .mobile-menu a{display:block;padding:13px 0;font-size:1rem;color:var(--tx2);font-weight:500;border-bottom:1px solid var(--brd);}
+    .mobile-menu a:last-child{border-bottom:none;}
+    .mobile-menu a.btn{color:#231603;border-bottom:none;}
+    @media(max-width:820px){.nav-links,.nav-cta{display:none;} .nav-burger{display:flex;} .nav-in{height:62px;}}
 
     .pill{display:inline-flex;align-items:center;gap:8px;font-size:.74rem;font-weight:700;letter-spacing:.02em;
       color:var(--gold);background:rgba(245,166,35,.08);border:1px solid rgba(245,166,35,.22);padding:6px 13px;border-radius:30px;}
@@ -122,14 +131,25 @@
       </svg></span> Cryptocoinex
     </a>
     <nav class="nav-links">
-      <a href="{{ route('home') }}#features">Features</a>
-      <a href="{{ route('home') }}#how">How it works</a>
-      <a href="{{ route('home') }}#academy">Academy</a>
-      <a href="{{ route('home') }}#faq">FAQ</a>
+      <a href="{{ route('features') }}" @class(['active' => request()->routeIs('features')])>Features</a>
+      <a href="{{ route('how') }}" @class(['active' => request()->routeIs('how')])>How it works</a>
+      <a href="{{ route('academy') }}" @class(['active' => request()->routeIs('academy')])>Academy</a>
+      <a href="{{ route('faq') }}" @class(['active' => request()->routeIs('faq')])>FAQ</a>
     </nav>
     <div class="nav-cta">
       <a href="{{ url('/admin/login') }}" class="btn btn-ghost btn-sm">Sign in</a>
       <a href="{{ route('onboarding.register') }}" class="btn btn-gold btn-sm">Open account <i class="fas fa-arrow-right" style="font-size:.7rem;"></i></a>
+    </div>
+    <button class="nav-burger" id="burger" aria-label="Open menu" aria-expanded="false"><i class="fas fa-bars"></i></button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="wrap">
+      <a href="{{ route('features') }}">Features</a>
+      <a href="{{ route('how') }}">How it works</a>
+      <a href="{{ route('academy') }}">Academy</a>
+      <a href="{{ route('faq') }}">FAQ</a>
+      <a href="{{ url('/admin/login') }}">Sign in</a>
+      <a href="{{ route('onboarding.register') }}" class="btn btn-gold" style="margin-top:14px;justify-content:center;">Open account</a>
     </div>
   </div>
 </header>
@@ -150,9 +170,9 @@
       </div>
       <div class="foot-col">
         <h4>Product</h4>
-        <a href="{{ route('home') }}#features">Features</a>
-        <a href="{{ route('home') }}#how">How it works</a>
-        <a href="{{ route('home') }}#academy">Academy</a>
+        <a href="{{ route('features') }}">Features</a>
+        <a href="{{ route('how') }}">How it works</a>
+        <a href="{{ route('academy') }}">Academy</a>
         <a href="{{ route('onboarding.register') }}">Get started</a>
       </div>
       <div class="foot-col">
@@ -165,7 +185,8 @@
         <h4>Legal</h4>
         <a href="{{ route('privacy') }}">Privacy Policy</a>
         <a href="{{ route('terms') }}">Terms of Service</a>
-        <a href="{{ route('home') }}#faq">FAQ</a>
+        <a href="{{ route('faq') }}">FAQ</a>
+        <a href="{{ route('contact') }}">Contact us</a>
       </div>
     </div>
   </div>
@@ -182,6 +203,16 @@
   var nav = document.getElementById('nav');
   var onScroll = function(){ nav.classList.toggle('scrolled', window.scrollY > 12); };
   onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Mobile menu
+  var burger = document.getElementById('burger'), menu = document.getElementById('mobileMenu');
+  if(burger){
+    burger.addEventListener('click', function(){
+      var open = menu.classList.toggle('open');
+      burger.setAttribute('aria-expanded', open);
+      burger.querySelector('i').className = open ? 'fas fa-xmark' : 'fas fa-bars';
+    });
+  }
 
   // Scroll-reveal
   var io = new IntersectionObserver(function(es){

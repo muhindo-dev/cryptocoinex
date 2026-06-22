@@ -63,7 +63,7 @@
               <details class="lv-review">
                 <summary><i class="fas fa-gavel"></i> Process</summary>
                 <div class="lv-panel">
-                  <div style="font-size:.74rem;color:var(--ad-muted);">Send <strong>{{ \App\Support\Money::format($r->amount, $currency) }}</strong> in {{ $r->payout_network ?: 'USDT' }} to <span class="lv-phone" style="font-family:ui-monospace,monospace;word-break:break-all;">{{ $r->destination }}</span>, then approve to record the debit.</div>
+                  <div style="font-size:.74rem;color:var(--ad-muted);">Send <strong>{{ \App\Support\Money::format($r->amount, $currency) }}</strong> in {{ $r->payout_network ?: 'USD' }} to <span class="lv-phone" style="font-family:ui-monospace,monospace;word-break:break-all;">{{ $r->destination }}</span>, then approve to record the debit.</div>
                   {{-- Approve --}}
                   <form method="POST" action="{{ route('admin.trading.live.withdrawals.approve', $r) }}"
                         onsubmit="return confirm('Confirm you have SENT {{ \App\Support\Money::format($r->amount, $currency) }} to this wallet address? This debits the student\'s balance.')">

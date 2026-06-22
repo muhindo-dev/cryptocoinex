@@ -61,12 +61,12 @@
           <input type="number" step="1" min="{{ $min }}" max="{{ $available }}" id="amount" name="amount" value="{{ old('amount') }}"
                  class="lf-input lf-amt" placeholder="0" required>
         </div>
-        <div class="lf-hint">@if($min>0)Minimum ${{ number_format($min) }}. @endif Max ${{ number_format($available) }} · paid in USDT.</div>
+        <div class="lf-hint">@if($min>0)Minimum ${{ number_format($min) }}. @endif Max ${{ number_format($available) }} · paid in USD.</div>
         @error('amount')<div class="lf-err">{{ $message }}</div>@enderror
       </div>
 
       <div class="lf-field">
-        <label class="lf-label" for="payout_address">Your USDT wallet address</label>
+        <label class="lf-label" for="payout_address">Your USD wallet address</label>
         <input type="text" id="payout_address" name="payout_address" value="{{ old('payout_address') }}"
                class="lf-input" placeholder="Paste your wallet address" required>
         <div class="lf-hint">Double-check this — funds sent to a wrong address can't be recovered.</div>
@@ -76,7 +76,7 @@
       <div class="lf-field">
         <label class="lf-label" for="payout_network">Network</label>
         <input type="text" id="payout_network" name="payout_network" value="{{ old('payout_network', $network) }}"
-               class="lf-input" placeholder="e.g. USDT (TRC20)">
+               class="lf-input" placeholder="e.g. USD (TRC20)">
         <div class="lf-hint">The network your wallet address is on.</div>
         @error('payout_network')<div class="lf-err">{{ $message }}</div>@enderror
       </div>
@@ -89,7 +89,7 @@
 
       <button type="submit" class="lf-submit"><i class="fas fa-paper-plane"></i> Submit withdrawal request</button>
       <p style="font-size:.68rem;color:var(--text-dim);text-align:center;margin:12px 0 0;line-height:1.6;">
-        Your balance only changes once we've sent the USDT and approved the request. We'll email you when it's done.
+        Your balance only changes once we've sent the USD and approved the request. We'll email you when it's done.
       </p>
     </form>
     @endif

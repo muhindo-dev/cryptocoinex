@@ -10,23 +10,13 @@ use App\Http\Controllers\Trading\TradeController;
 use App\Http\Controllers\Trading\WalletController;
 use Illuminate\Support\Facades\Route;
 
-// ── Public ─────────────────────────────────────────────────────────────────
-Route::get('/', function () {
-    if (auth()->check()) {
-        return auth()->user()->canAccessAdmin()
-            ? redirect()->route('admin.dashboard')
-            : redirect()->route('trade.index');
-    }
-
-    return view('public.home', [
-        'assetCount' => \App\Models\Trading\Asset::where('enabled', true)->count() ?: 13,
-        'lessonCount' => \App\Models\Education\EducationArticle::count() ?: 42,
-        'startBalance' => (int) \App\Models\Trading\TradingSetting::get('default_start_balance', 10000),
-        'currency' => \App\Models\Trading\TradingSetting::get('live_account_currency', 'USD'),
-        'minDeposit' => (float) \App\Models\Trading\TradingSetting::get('live_account_min_deposit', 0),
-        'maxPayout' => (int) (\App\Models\Trading\Asset::where('enabled', true)->max('payout_percent') ?: 80),
-    ]);
-})->name('home');
+// ── Public marketing ──────────────────────────────────────────────────────────
+Route::get('/', [\App\Http\Controllers\PublicController::class, 'home'])->name('home');
+Route::get('/features', [\App\Http\Controllers\PublicController::class, 'features'])->name('features');
+Route::get('/how-it-works', [\App\Http\Controllers\PublicController::class, 'how'])->name('how');
+Route::get('/academy', [\App\Http\Controllers\PublicController::class, 'academy'])->name('academy');
+Route::get('/faq', [\App\Http\Controllers\PublicController::class, 'faq'])->name('faq');
+Route::get('/contact', [\App\Http\Controllers\PublicController::class, 'contact'])->name('contact');
 
 // ── Public info / legal ───────────────────────────────────────────────────────
 Route::get('/privacy', fn () => view('public.privacy'))->name('privacy');

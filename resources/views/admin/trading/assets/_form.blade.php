@@ -15,7 +15,7 @@
       <div class="ad-form-group">
         <label class="ad-label">Name <span style="color:var(--ad-danger)">*</span></label>
         <input class="ad-input @error('name') is-invalid @enderror" type="text" name="name"
-               value="{{ old('name', $asset?->name) }}" placeholder="Bitcoin / USDT" maxlength="100">
+               value="{{ old('name', $asset?->name) }}" placeholder="Bitcoin / USD" maxlength="100">
         @error('name')<div class="ad-field-error">{{ $message }}</div>@enderror
       </div>
 

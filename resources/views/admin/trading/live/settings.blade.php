@@ -70,17 +70,17 @@
     <div class="ad-card-body">
       <div style="display:grid;grid-template-columns:2fr 1fr;gap:1rem;">
         <div class="ad-form-group">
-          <label class="ad-label">Receiving wallet address (USDT)</label>
+          <label class="ad-label">Receiving wallet address (USD)</label>
           <input class="ad-input" type="text" name="live_account_crypto_address"
                  value="{{ old('live_account_crypto_address', $settings['live_account_crypto_address'] ?? '') }}"
                  placeholder="e.g. TXk9...8aQ2" style="font-family:ui-monospace,monospace;">
-          <div style="font-size:.74rem;color:var(--ad-muted);margin-top:.25rem;">The address students send USDT to. Shown on the deposit screen.</div>
+          <div style="font-size:.74rem;color:var(--ad-muted);margin-top:.25rem;">The address students send USD to. Shown on the deposit screen.</div>
         </div>
         <div class="ad-form-group">
           <label class="ad-label">Network</label>
           <input class="ad-input" type="text" name="live_account_crypto_network"
-                 value="{{ old('live_account_crypto_network', $settings['live_account_crypto_network'] ?? 'USDT (TRC20)') }}"
-                 placeholder="USDT (TRC20)">
+                 value="{{ old('live_account_crypto_network', $settings['live_account_crypto_network'] ?? 'USD (TRC20)') }}"
+                 placeholder="USD (TRC20)">
         </div>
       </div>
       <div class="ad-form-group">

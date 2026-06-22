@@ -23,10 +23,10 @@ class TradingSeeder extends Seeder
             'live_account_currency' => 'USD',
             'live_account_min_deposit' => '10',        // USD
             'live_account_min_withdrawal' => '20',     // USD
-            'live_account_crypto_address' => '',       // admin sets the receiving USDT address
-            'live_account_crypto_network' => 'USDT (TRC20)',
+            'live_account_crypto_address' => '',       // admin sets the receiving USD address
+            'live_account_crypto_network' => 'USD (TRC20)',
             'live_account_payment_link' => '',         // optional hosted checkout / pay link
-            'live_account_payment_instructions' => "Fund your account with crypto (USDT). Send the exact USD amount, then upload a screenshot of your payment for verification.\n\n1. Send USDT to the wallet address shown on the deposit screen (or use the payment link).\n2. Take a screenshot of the completed transaction.\n3. Tap \"New deposit\", enter the USD amount and upload your screenshot.\n4. Our team verifies the payment and credits your Live Account — usually within a few hours. You'll get an email the moment it's approved.\n\nOnly send the network shown (e.g. USDT TRC20). Sending the wrong asset or network may result in loss of funds.",
+            'live_account_payment_instructions' => "Fund your account with crypto (USD). Send the exact USD amount, then upload a screenshot of your payment for verification.\n\n1. Send USD to the wallet address shown on the deposit screen (or use the payment link).\n2. Take a screenshot of the completed transaction.\n3. Tap \"New deposit\", enter the USD amount and upload your screenshot.\n4. Our team verifies the payment and credits your Live Account — usually within a few hours. You'll get an email the moment it's approved.\n\nOnly send the network shown (e.g. USD TRC20). Sending the wrong asset or network may result in loss of funds.",
         ];
 
         foreach ($settings as $key => $value) {
@@ -40,10 +40,10 @@ class TradingSeeder extends Seeder
         // [symbol, name, class, payout, min, max, expiries, live, liveSymbol,
         //  startPrice, drift, vol, seed, category, difficulty, featured, order]
         $defs = [
-            ['BTCUSDT', 'Bitcoin / USDT', 'crypto', 80, 1, 10000, [30, 60, 300], true, 'BTCUSDT', 67000, 0, 0.00200, 100001, 'crypto', 'beginner', true, 1],
-            ['ETHUSDT', 'Ethereum / USDT', 'crypto', 80, 1, 10000, [30, 60, 300], true, 'ETHUSDT', 3500, 0, 0.00250, 100002, 'crypto', 'beginner', true, 2],
-            ['BNBUSDT', 'Binance Coin / USDT', 'crypto', 78, 1, 10000, [30, 60, 300], true, 'BNBUSDT', 600, 0, 0.00280, 100003, 'crypto', 'intermediate', false, 3],
-            ['SOLUSDT', 'Solana / USDT', 'crypto', 78, 1, 10000, [30, 60, 300], true, 'SOLUSDT', 150, 0, 0.00350, 100004, 'crypto', 'intermediate', false, 4],
+            ['BTCUSDT', 'Bitcoin / USD', 'crypto', 80, 1, 10000, [30, 60, 300], true, 'BTCUSDT', 67000, 0, 0.00200, 100001, 'crypto', 'beginner', true, 1],
+            ['ETHUSDT', 'Ethereum / USD', 'crypto', 80, 1, 10000, [30, 60, 300], true, 'ETHUSDT', 3500, 0, 0.00250, 100002, 'crypto', 'beginner', true, 2],
+            ['BNBUSDT', 'Binance Coin / USD', 'crypto', 78, 1, 10000, [30, 60, 300], true, 'BNBUSDT', 600, 0, 0.00280, 100003, 'crypto', 'intermediate', false, 3],
+            ['SOLUSDT', 'Solana / USD', 'crypto', 78, 1, 10000, [30, 60, 300], true, 'SOLUSDT', 150, 0, 0.00350, 100004, 'crypto', 'intermediate', false, 4],
             ['EURUSD-SIM', 'Euro / USD (Simulated)', 'forex', 75, 1, 5000, [30, 60, 300], false, null, 1.08500, 0, 0.00050, 200001, 'forex', 'beginner', false, 5],
             ['GBPUSD-SIM', 'Pound / USD (Simulated)', 'forex', 75, 1, 5000, [30, 60, 300], false, null, 1.27000, 0, 0.00055, 200002, 'forex', 'beginner', false, 6],
             ['USDJPY-SIM', 'USD / Yen (Simulated)', 'forex', 75, 1, 5000, [30, 60, 300], false, null, 157.50000, 0, 0.00050, 200003, 'forex', 'intermediate', false, 7],

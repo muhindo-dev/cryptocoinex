@@ -144,8 +144,8 @@
         <div class="ab-feat"><span class="i"><i class="fas fa-graduation-cap"></i></span><span class="t">A free trading course with 40+ lessons</span></div>
       </div>
       <div class="ab-ticker">
-        <div class="ab-tk"><div class="s">BTC/USDT</div><div class="v">67,431</div><div class="c up">▲ 1.24%</div></div>
-        <div class="ab-tk"><div class="s">ETH/USDT</div><div class="v">3,512</div><div class="c up">▲ 0.86%</div></div>
+        <div class="ab-tk"><div class="s">BTC/USD</div><div class="v">67,431</div><div class="c up">▲ 1.24%</div></div>
+        <div class="ab-tk"><div class="s">ETH/USD</div><div class="v">3,512</div><div class="c up">▲ 0.86%</div></div>
         <div class="ab-tk"><div class="s">XAU/USD</div><div class="v">2,351</div><div class="c dn">▼ 0.31%</div></div>
       </div>
     </div>

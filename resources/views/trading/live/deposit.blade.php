@@ -49,8 +49,8 @@
 
   {{-- Crypto payment instructions --}}
   <div class="ta-card" style="margin-bottom:16px;">
-    <h2 style="margin:0 0 4px;font-size:1rem;"><i class="fab fa-bitcoin" style="color:var(--gold)"></i> Pay with crypto (USDT)</h2>
-    <p style="font-size:.78rem;color:var(--text-muted);margin:0 0 12px;">Send the exact USD amount in USDT, then record it below with a screenshot.</p>
+    <h2 style="margin:0 0 4px;font-size:1rem;"><i class="fab fa-bitcoin" style="color:var(--gold)"></i> Pay with crypto (USD)</h2>
+    <p style="font-size:.78rem;color:var(--text-muted);margin:0 0 12px;">Send the exact USD amount in USD, then record it below with a screenshot.</p>
 
     <span class="lf-netchip">{{ $cryptoNetwork }}</span>
     @if($cryptoAddress)

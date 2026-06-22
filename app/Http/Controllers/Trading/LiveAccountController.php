@@ -58,7 +58,7 @@ class LiveAccountController extends Controller
             'pendingWithdrawals' => $pendingWithdrawals,
             'instructions' => TradingSetting::get('live_account_payment_instructions'),
             'cryptoAddress' => TradingSetting::get('live_account_crypto_address'),
-            'cryptoNetwork' => TradingSetting::get('live_account_crypto_network', 'USDT (TRC20)'),
+            'cryptoNetwork' => TradingSetting::get('live_account_crypto_network', 'USD (TRC20)'),
             'paymentLink' => TradingSetting::get('live_account_payment_link'),
         ]);
     }
@@ -86,7 +86,7 @@ class LiveAccountController extends Controller
             'currency' => $this->wallets->currency(),
             'instructions' => TradingSetting::get('live_account_payment_instructions'),
             'cryptoAddress' => TradingSetting::get('live_account_crypto_address'),
-            'cryptoNetwork' => TradingSetting::get('live_account_crypto_network', 'USDT (TRC20)'),
+            'cryptoNetwork' => TradingSetting::get('live_account_crypto_network', 'USD (TRC20)'),
             'paymentLink' => TradingSetting::get('live_account_payment_link'),
         ]);
     }
@@ -137,7 +137,7 @@ class LiveAccountController extends Controller
             'available' => $this->wallets->availableBalance($wallet),
             'min' => (int) TradingSetting::get('live_account_min_withdrawal', 0),
             'currency' => $this->wallets->currency(),
-            'network' => TradingSetting::get('live_account_crypto_network', 'USDT (TRC20)'),
+            'network' => TradingSetting::get('live_account_crypto_network', 'USD (TRC20)'),
         ]);
     }
 
@@ -173,6 +173,6 @@ class LiveAccountController extends Controller
         $this->notifier->withdrawalRequested($req->load('user'));
 
         return redirect()->route('trade.live')
-            ->with('success', 'Withdrawal request submitted. We\'ll send the USDT to your wallet and notify you once it\'s processed.');
+            ->with('success', 'Withdrawal request submitted. We\'ll send the USD to your wallet and notify you once it\'s processed.');
     }
 }

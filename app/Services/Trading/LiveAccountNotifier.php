@@ -134,7 +134,7 @@ class LiveAccountNotifier
         $this->safeMail($this->adminEmails(), new LiveAccountNotice(
             subjectLine: "New withdrawal request — {$amount} from {$req->user->name}",
             heading: 'A withdrawal request needs processing',
-            intro: "{$req->user->name} has requested a withdrawal from their Live Account. Send the USDT to the wallet address below, then approve the request to record the debit.",
+            intro: "{$req->user->name} has requested a withdrawal from their Live Account. Send the USD to the wallet address below, then approve the request to record the debit.",
             rows: array_filter([
                 'Student' => e($req->user->name).' &middot; '.e($req->user->email),
                 'Amount' => $amount,
@@ -146,7 +146,7 @@ class LiveAccountNotifier
             ctaLabel: 'Process withdrawals',
             accent: '#2563eb',
             noteTitle: 'How it works',
-            noteBody: 'Send the USDT to the address first, then approve here. Approving creates the negative transaction on their Live Account. Decline if you cannot fulfil it — no funds are touched.',
+            noteBody: 'Send the USD to the address first, then approve here. Approving creates the negative transaction on their Live Account. Decline if you cannot fulfil it — no funds are touched.',
         ));
     }
 
@@ -163,7 +163,7 @@ class LiveAccountNotifier
         $this->safeMail([$req->user->email], new LiveAccountNotice(
             subjectLine: "Withdrawal paid — {$amount} sent to your wallet",
             heading: 'Your withdrawal is on its way 💸',
-            intro: "Hi {$req->user->name}, we've sent your withdrawal in USDT to your wallet address. The amount has been deducted from your Live Account balance.",
+            intro: "Hi {$req->user->name}, we've sent your withdrawal in USD to your wallet address. The amount has been deducted from your Live Account balance.",
             rows: array_filter([
                 'Amount sent' => $amount,
                 'Sent to' => e($req->destination),
