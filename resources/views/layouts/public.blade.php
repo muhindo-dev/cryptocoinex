@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  @include('partials.sw-kill')
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>@yield('title', 'Trade Crypto, Forex & Gold on Live Markets') · Cryptocoinex</title>
   <meta name="description" content="@yield('desc', 'Trade crypto, forex and gold on live markets, with fast deposits and withdrawals and a free demo to practice first.')">

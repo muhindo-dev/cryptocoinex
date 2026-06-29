@@ -3,6 +3,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  @include('partials.sw-kill')
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>@yield('title', 'Cryptocoinex') — {{ config('app.name') }}</title>
@@ -195,8 +196,11 @@
   load();
   setInterval(load, 30000);
 })();
+// Service worker disabled — actively unregister any old one and clear caches
+// (a previous cache-first worker caused stale assets / blank screens).
 if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => navigator.serviceWorker.register('{{ asset('sw.js') }}').catch(() => {}));
+  navigator.serviceWorker.getRegistrations().then((rs) => rs.forEach((r) => r.unregister())).catch(() => {});
+  if (window.caches) caches.keys().then((ks) => ks.forEach((k) => caches.delete(k))).catch(() => {});
 }
 </script>
 @stack('scripts')
