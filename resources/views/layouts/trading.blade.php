@@ -13,9 +13,9 @@
     window.CX_DEFAULT_THEME = '{{ auth()->user()->theme ?? 'dark' }}';
     window.CX_THEME_SAVE = { url: '{{ route('trade.theme') }}', token: '{{ csrf_token() }}' };
   </script>
-  <script src="{{ asset('js/theme.js') }}"></script>
+  <script src="{{ asset('js/theme.js') }}?v={{ filemtime(public_path('js/theme.js')) }}"></script>
   <link rel="stylesheet" href="{{ asset('vendor/fa/css/all.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('css/tokens.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/tokens.css') }}?v={{ filemtime(public_path('css/tokens.css')) }}">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html, body { height: 100%; overflow: hidden; }

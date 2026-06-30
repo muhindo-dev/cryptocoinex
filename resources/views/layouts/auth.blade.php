@@ -9,7 +9,7 @@
   <link rel="icon" type="image/png" href="{{ asset('images/logo-square.png') }}">
   <link rel="manifest" href="{{ asset('manifest.json') }}">
   <meta name="theme-color" content="#0b0e14">
-  <link rel="stylesheet" href="{{ asset('css/tokens.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/tokens.css') }}?v={{ filemtime(public_path('css/tokens.css')) }}">
   <link rel="stylesheet" href="{{ asset('vendor/fa/css/all.min.css') }}">
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}

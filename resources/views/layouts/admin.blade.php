@@ -17,10 +17,10 @@
     window.CX_DEFAULT_THEME = '{{ Auth::user()->theme ?? 'dark' }}';
     @auth window.CX_THEME_SAVE = { url: '{{ route('trade.theme') }}', token: '{{ csrf_token() }}' }; @endauth
   </script>
-  <script src="{{ asset('js/theme.js') }}"></script>
+  <script src="{{ asset('js/theme.js') }}?v={{ filemtime(public_path('js/theme.js')) }}"></script>
 
   {{-- All CSS served locally — zero CDN blocking requests --}}
-  <link rel="stylesheet" href="{{ asset('css/tokens.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/tokens.css') }}?v={{ filemtime(public_path('css/tokens.css')) }}">
   <link rel="stylesheet" href="{{ asset('vendor/fa/css/all.min.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/select2/css/select2.min.css') }}">
   <link rel="stylesheet" href="{{ asset('vendor/flatpickr/flatpickr.min.css') }}">
